@@ -1,20 +1,20 @@
-import google.generativeai as genai
+from google import genai
 
-# COLOQUE SUA CHAVE AQUI ENTRE AS ASPAS
-minha_chave = "SUA_CHAVE_AQUI_DO_AI_STUDIO"
+# COLOQUE SUA CHAVE AQUI
+minha_chave = ""
 
-# Configuração da API
-genai.configure(api_key=minha_chave)
+# Inicializa o cliente novo
+client = genai.Client(api_key=minha_chave)
 
-# Inicializa o modelo (o 1.5-flash é ótimo para quem estuda CS50)
-model = genai.GenerativeModel('gemini-1.5-flash')
-
-print("--- Chat Gemini Iniciado ---")
+print("--- Chat Gemini Iniciado (Versão Atualizada) ---")
 prompt = input('Prompt: ')
 
 try:
-    # Gera a resposta
-    response = model.generate_content(prompt)
+    # No modelo novo, usamos apenas 'gemini-1.5-flash' ou 'gemini-2.0-flash'
+    response = client.models.generate_content(
+        model='gemini-2.5-flash', 
+        contents=prompt
+    )
     
     print("\nResposta do Gemini:")
     print(response.text)
